@@ -51,8 +51,7 @@ function game() {
   let playerScore = 0;
   let computerScore = 0;
   for (let i = 0; i < 5; i++) {
-//    let playerSelection = prompt("What's your move (rock, scissors or paper)? ").toLowerCase();
-    const playerSelection = getComputerChoice();
+    let playerSelection = prompt("What's your move (rock, scissors or paper)? ").toLowerCase();
     const computerSelection = getComputerChoice();
     result = playRound(playerSelection, computerSelection);
     if(result === 1) {
@@ -63,6 +62,14 @@ function game() {
       // do not update scores
     }
     console.log(`Player ${playerScore} - ${computerScore} Computer`);
+  }
+
+  if (playerScore > computerScore) {
+    console.log("The winner is... YOU! CONGRATULATIONS!!!");
+  } else if (playerScore < computerScore) {
+    console.log("Unfortunately, you lost to the computer... Better luck next time!!");
+  } else {
+    console.log("Aaaaand... it's a DRAW!!");
   }
 }
 
