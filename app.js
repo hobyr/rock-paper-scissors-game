@@ -1,6 +1,5 @@
 // Let player choose move -> getPlayerChoice()
-let playerSelection = prompt("What's your move (rock, scissors or paper)? ")
-playerSelection = playerSelection.toLowerCase();
+let playerSelection = prompt("What's your move (rock, scissors or paper)? ").toLowerCase();
 
 // Make computer choose move -> getComputerChoice()
 function getComputerChoice() {
@@ -10,35 +9,42 @@ function getComputerChoice() {
 
 const computerSelection = getComputerChoice();
 
-// Using comparisons, decide who wins or when is draw.
-// If same moves : draw
-if (playerSelection === computerSelection) {
-  console.log('DRAW!');
+// Making a game function
+function playRound(playerSelection, computerSelection) {
+  let isPlayerWinner = false;
+  // If same moves : draw
+  if (playerSelection === computerSelection) {
+    return "DRAW! No winner, no loser!"
+  }
+  // If player chooses Rock, compare with other cases from computer
+  if (playerSelection === 'rock') { 
+    if (computerSelection === 'scissors') {
+      isPlayerWinner = true;
+    } else if (computerSelection === 'paper') {
+      isPlayerWinner = false;
+    }
+  }
+  // If player chooses Paper, compare with other cases from computer
+  else if (playerSelection === 'paper') { 
+    if (computerSelection === 'rock') {
+      isPlayerWinner = true;
+    } else if (computerSelection === 'scissors') {
+      isPlayerWinner = false;
+    }
+  }
+  // If player chooses Scissors, compare with other cases from computer
+  else if (playerSelection === 'scissors') { 
+    if (computerSelection === 'paper') {
+      isPlayerWinner = true;
+    } else if (computerSelection === 'rock') {
+      isPlayerWinner = false;
+    }
+  }
+
+  if (isPlayerWinner) {
+    return `You win! ${playerSelection} beats ${computerSelection}`;
+  }
+  return `You lose! ${computerSelection} beats ${playerSelection}`;
 }
 
-// If player chooses Rock, compare with other cases from computer
-if (playerSelection === 'rock') { 
-  if (computerSelection === 'scissors') {
-    console.log('Player wins!');
-  } else if (computerSelection === 'paper') {
-    console.log('Computer wins!');
-  }
-}
-// If player chooses Paper, compare with other cases from computer
-else if (playerSelection === 'paper') { 
-  if (computerSelection === 'rock') {
-    console.log('Player wins!');
-  } else if (computerSelection === 'scissors') {
-    console.log('Computer wins!');
-  }
-}
-// If player chooses Scissors, compare with other cases from computer
-else if (playerSelection === 'scissors') { 
-  if (computerSelection === 'paper') {
-    console.log('Player wins!');
-  } else if (computerSelection === 'rock') {
-    console.log('Computer wins!');
-  }
-}
-
-console.log(`Player: ${playerSelection} - Computer: ${computerSelection}`);
+console.log(playRound(playerSelection, computerSelection));
