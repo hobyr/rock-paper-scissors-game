@@ -5,8 +5,9 @@ function getComputerChoice() {
 }
 
 // Making a game function
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
   let isPlayerWinner = 0;
+  const computerSelection = getComputerChoice();
   // If same moves : draw
   if (playerSelection === computerSelection) {
     isPlayerWinner = -1;
@@ -50,10 +51,7 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   let playerScore = 0;
   let computerScore = 0;
-  for (let i = 0; i < 5; i++) {
-    let playerSelection = prompt("What's your move (rock, scissors or paper)? ").toLowerCase();
-    const computerSelection = getComputerChoice();
-    result = playRound(playerSelection, computerSelection);
+  for (let i = 0; i < 1; i++) {
     if(result === 1) {
       playerScore++;
     } else if (result === 0){
@@ -73,4 +71,12 @@ function game() {
   }
 }
 
-game();
+// Game starts below!
+const userChoiceInput = document.querySelectorAll('input');
+console.log(userChoiceInput);
+userChoiceInput.forEach(input => {
+  input.addEventListener('click', function() {
+    console.log(this.value);
+    playRound(this.value);
+  })
+});
