@@ -1,0 +1,44 @@
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scores {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.playerScore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2em;
+}
+
+.playerScore span {
+  font-size: 2em;
+}
+
+.playerChoices {
+  display: flex;
+}
+
+.playerChoices button {
+  width: 150px;
+  height: 50px;
+  border: 1px solid white;
+  color: white;
+  text-transform: uppercase;
+  background-color: #555;
+}
+
+.playerChoices button:hover {
+  background-color: #777;
+}
+
+.playerChoices button:active {
+  background-color: #7a7;
+}
