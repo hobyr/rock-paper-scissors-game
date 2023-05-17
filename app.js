@@ -38,35 +38,14 @@ function playRound(playerSelection) {
   }
 
   if (isPlayerWinner === 1) {
-    console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+    gameResult.innerText = `You win! ${playerSelection} beats ${computerSelection}`;
   } else if (isPlayerWinner === 0) {
-    console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+    gameResult.innerText = `You lose! ${computerSelection} beats ${playerSelection}`;
   } else {
-    console.log("DRAW! No winner, no loser!");
+    gameResult.innerText = "DRAW! No winner, no loser!";
   }
 
   return isPlayerWinner;
-}
-
-function game() {
-  for (let i = 0; i < 1; i++) {
-    if(result === 1) {
-      playerScore++;
-    } else if (result === 0){
-      computerScore++;
-    } else {
-      // do not update scores
-    }
-    console.log(`Player ${playerScore} - ${computerScore} Computer`);
-  }
-
-  if (playerScore > computerScore) {
-    console.log("The winner is... YOU! CONGRATULATIONS!!!");
-  } else if (playerScore < computerScore) {
-    console.log("Unfortunately, you lost to the computer... Better luck next time!!");
-  } else {
-    console.log("Aaaaand... it's a DRAW!!");
-  }
 }
 
 // Game starts below!
@@ -75,7 +54,8 @@ let computerScore = 0;
 
 const userChoiceInput = document.querySelectorAll('button');
 const scoreDisplays = document.querySelectorAll('.playerScore span');
-console.log(scoreDisplays);
+const gameResult = document.querySelector('.gameResult');
+
 userChoiceInput.forEach(input => {
   input.addEventListener('click', function() {
     const result = playRound(this.value);
@@ -87,6 +67,22 @@ userChoiceInput.forEach(input => {
       scoreDisplays[1].innerText = computerScore;
     } else {
       // do not update scores
+    }
+
+    if (playerScore === 5 || computerScore === 5) {
+      if (playerScore > computerScore) {
+        scoreDisplays[0].style.color = 'green';
+        scoreDisplays[1].style.color = 'red';
+        gameResult.innerText = "The winner is... YOU! CONGRATULATIONS!!!";
+      } else if (playerScore < computerScore) {
+        gameResult.innerText = "Unfortunately, you lost to the computer... Better luck next time!!";
+        scoreDisplays[1].style.color = 'green';
+        scoreDisplays[0].style.color = 'red';
+      } else {
+        gameResult.innerText = "Aaaaand... it's a DRAW!!";
+        scoreDisplays[0].style.color = 'blue';
+        scoreDisplays[1].style.color = 'blue';
+      }
     }
   })
 });
