@@ -49,8 +49,6 @@ function playRound(playerSelection) {
 }
 
 function game() {
-  let playerScore = 0;
-  let computerScore = 0;
   for (let i = 0; i < 1; i++) {
     if(result === 1) {
       playerScore++;
@@ -72,11 +70,23 @@ function game() {
 }
 
 // Game starts below!
-const userChoiceInput = document.querySelectorAll('input');
-console.log(userChoiceInput);
+let playerScore = 0;
+let computerScore = 0;
+
+const userChoiceInput = document.querySelectorAll('button');
+const scoreDisplays = document.querySelectorAll('.playerScore span');
+console.log(scoreDisplays);
 userChoiceInput.forEach(input => {
   input.addEventListener('click', function() {
-    console.log(this.value);
-    playRound(this.value);
+    const result = playRound(this.value);
+    if(result === 1) {
+      playerScore++;
+      scoreDisplays[0].innerText = playerScore;
+    } else if (result === 0){
+      computerScore++;
+      scoreDisplays[1].innerText = computerScore;
+    } else {
+      // do not update scores
+    }
   })
 });
