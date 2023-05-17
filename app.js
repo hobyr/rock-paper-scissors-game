@@ -51,6 +51,7 @@ function playRound(playerSelection) {
 // Game starts below!
 let playerScore = 0;
 let computerScore = 0;
+let result = undefined;
 
 const userChoiceInput = document.querySelectorAll('button');
 const scoreDisplays = document.querySelectorAll('.playerScore span');
@@ -58,7 +59,7 @@ const gameResult = document.querySelector('.gameResult');
 
 userChoiceInput.forEach(input => {
   input.addEventListener('click', function() {
-    const result = playRound(this.value);
+    result = playRound(this.value);
     if(result === 1) {
       playerScore++;
       scoreDisplays[0].innerText = playerScore;
@@ -70,6 +71,7 @@ userChoiceInput.forEach(input => {
     }
 
     if (playerScore === 5 || computerScore === 5) {
+      userChoiceInput.forEach(input => input.disabled = true);
       if (playerScore > computerScore) {
         scoreDisplays[0].style.color = 'green';
         scoreDisplays[1].style.color = 'red';
